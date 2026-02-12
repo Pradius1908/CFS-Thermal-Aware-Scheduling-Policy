@@ -40,8 +40,6 @@ rc-thermal-scheduler/
 └── .gitignore
 
 
-we ARE CHARLIE KIIIRK 
-
 # STRESS TESTING PHASE
 ------------------------
 
@@ -63,4 +61,7 @@ stress-ng --cpu 10 --timeout 155s
 
 ## Terminal 3 
 python3 templogger.py
+
+## Terminal 4
+python 3 app.py
 
