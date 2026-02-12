@@ -1,6 +1,7 @@
 # RC-Thermal-Scheduler
 
-A CFS scheduling policy that takes thermal parameters into consideration to ensure lower overall CPU temperatures through frequency capping regulated mitigation
+A CFS scheduling policy that takes thermal parameters into consideration to ensure lower overall CPU temperatures through frequency capping regulated mitigation.
+Works ideally under high pressure.
 NOT A REPLACEMENT FOR CFS, DO NOT TRY TO REPLACE CFS.
 
 rc-thermal-scheduler/
@@ -74,10 +75,10 @@ python 3 app.py
 
 ## Terminal 5
 cd ../plots/
-python3 plot_temperature.py
+python3 plot_temperature.py # run after logging temperatures
 
 
-# COMMON BUG
+# COMMON BUGS
 -------------
 
 If terminal says "sensor unavailable - monitoring only" while running, you likely have a different coretemp file
@@ -90,6 +91,6 @@ for i in /sys/class/hwmon/hwmon*; do
 done
 
 The hwmon that says "coretemp" in the loop is your temperature reading file. Replace the hwmon number in utils.c and app.py respectively.
-It should run perfectly then, and display current and predicted temperatures.
+Run make file commands once again and it should run perfectly then.
+You'll know this if the terminal 1 displays current and predicted temperatures and if the temperature reading in app.py doesn't say N/A.
 
--------------
