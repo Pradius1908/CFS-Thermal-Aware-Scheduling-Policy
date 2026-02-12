@@ -1,5 +1,8 @@
 # RC-Thermal-Scheduler
 
+A CFS scheduling policy that takes thermal parameters into consideration to ensure lower overall CPU temperatures through frequency capping regulated mitigation
+NOT A REPLACEMENT FOR CFS, DO NOT TRY TO REPLACE CFS.
+
 rc-thermal-scheduler/
 │
 ├── src/
@@ -44,6 +47,8 @@ rc-thermal-scheduler/
 ------------------------
 
 ## Terminal 1
+make clean
+make
 sudo ./rc_sched
 
 ## Terminal 2
@@ -60,8 +65,31 @@ Sustained Pressure
 stress-ng --cpu 10 --timeout 155s
 
 ## Terminal 3 
-python3 templogger.py
+cd ../experiments/  # must be ran simultaneously with stress command. hence the 5 seconds extra in stress
+python3 temp_logger.py # rename .csv files to baseline when run without scheduler and to thermal when ran with scheduler
 
 ## Terminal 4
+cd ../demo/
 python 3 app.py
 
+## Terminal 5
+cd ../plots/
+python3 plot_temperature.py
+
+
+# COMMON BUG
+-------------
+
+If terminal says "sensor unavailable - monitoring only" while running, you likely have a different coretemp file
+To find your coretemp file, terminate scheduler, and run this:
+
+ls /sys/class/hwmon/
+
+for i in /sys/class/hwmon/hwmon*; do
+  echo "$i: $(cat $i/name 2>/dev/null)"
+done
+
+The hwmon that says "coretemp" in the loop is your temperature reading file. Replace the hwmon number in utils.c and app.py respectively.
+It should run perfectly then, and display current and predicted temperatures.
+
+-------------
