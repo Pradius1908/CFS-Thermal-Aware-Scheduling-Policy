@@ -1,7 +1,10 @@
 # RC-Thermal-Scheduler
+-----------------------
 
 A CFS scheduling policy that takes thermal parameters into consideration to ensure lower overall CPU temperatures through frequency capping regulated mitigation.
 Works ideally under high pressure.
+The programs won't work if you are using a virtual machine. 
+
 NOT A REPLACEMENT FOR CFS, DO NOT TRY TO REPLACE CFS.
 
 rc-thermal-scheduler/
